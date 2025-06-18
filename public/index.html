@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PDF Form App</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- Login Section -->
+  <div id="loginSection">
+    <h2>Login</h2>
+    <form id="loginForm">
+      <input type="text" id="username" placeholder="Username" required />
+      <input type="password" id="password" placeholder="Password" required />
+      <button type="submit">Login</button>
+    </form>
+    <div id="loginError" class="error"></div>
+  </div>
+
+  <!-- Navigation Bar -->
+  <nav id="navBar" class="hidden">
+    <button data-section="dashboardSection">Dashboard</button>
+    <button data-section="uploadSection">Submit Form</button>
+    <button data-section="reviewSection" class="moderator hidden">Review Forms</button>
+    <button data-section="supportSection">Support</button>
+    <button data-section="profileSection">Profile</button>
+    <button id="logoutBtn">Logout</button>
+  </nav>
+
+  <!-- Dashboard -->
+  <div id="dashboardSection" class="hidden">
+    <h2>Dashboard</h2>
+    <p>Welcome, <span id="displayUsername"></span>!</p>
+  </div>
+
+  <!-- Upload Section -->
+  <div id="uploadSection" class="hidden">
+    <h2>Submit PDF Form</n2>
+    <form id="uploadForm">
+      <input type="file" id="pdfFile" accept="application/pdf" required />
+      <button type="submit">Upload</button>
+    </form>
+    <div id="uploadMessage"></div>
+  </div>
+
+  <!-- Review Section (Moderator) -->
+  <div id="reviewSection" class="hidden">
+    <h2>Review Forms</h2>
+    <table id="formsTable">
+      <thead>
+        <tr><th>ID</th><th>Submitted By</th><th>Status</th><th>Action</th></tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </div>
+
+  <!-- Support Section -->
+  <div id="supportSection" class="hidden">
+    <h2>Support Tickets</h2>
+    <form id="supportForm">
+      <textarea id="supportMessage" placeholder="Describe your issue" required></textarea>
+      <button type="submit">Submit Ticket</button>
+    </form>
+    <ul id="ticketsList"></ul>
+  </div>
+
+  <!-- Profile Section -->
+  <div id="profileSection" class="hidden">
+    <h2>Your Profile</h2>
+    <form id="profileForm">
+      <input type="text" id="p_username" placeholder="Username" required />
+      <input type="email" id="p_email" placeholder="Email" required />
+      <input type="number" id="p_age" placeholder="Age" />
+      <input type="date" id="p_birthday" placeholder="Birthday" />
+      <input type="text" id="p_nationalId" placeholder="National ID" />
+      <input type="text" id="p_passportNumber" placeholder="Passport Number" />
+      <input type="date" id="p_passportExpiry" placeholder="Passport Expiry" />
+      <button type="submit">Update Profile</button>
+    </form>
+    <div id="profileMessage"></div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

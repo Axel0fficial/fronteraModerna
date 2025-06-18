@@ -1,0 +1,4 @@
+.hidden { display: none; }
+body { font-family: Arial, sans-serif; margin: 20px; }
+nav button { margin-right: 10px; }
+.error { color: red; }
