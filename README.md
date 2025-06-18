@@ -3,7 +3,15 @@
 Es un repositorio que utiliza Node.JS y MySQL
 Funciona con Node.JS v22.11.0.
 
-Empecemos con MySQL 
+Empecemos con Node.JS
+
+1.Copia o descarga los archivos
+2.En tu carpeta de proyecto escribe "npm install"
+3.Populate ".env" from ".env.example"
+.env psoiblemente no existe en tu carpeta de proyecto 
+Crealo en la terminal ingresando "copy .env.example .env"
+
+MySQL Setup
 
 1. Asegurate de que MySQL este corriendo:
    - Abre MySQL Workbench
@@ -18,15 +26,13 @@ Empecemos con MySQL
 3. Crea un usuario:
    - Anda a Server -> User and Privileges
    - Add Account, crea un usuario y dale una contraseña
-   - en Schema Privileges 
+   - en Schema Privileges, haz click en Add Entry elige tu schema y grant All privileges
+   - Haz click en Appply
 
-1.Copia o descarga los archivos
-2.En tu carpeta de proyecto escribe "npm install"
-3.Populate ".env" from ".env.example"
-.env psoiblemente no existe en tu carpeta de proyecto 
-Crealo en la terminal ingresando "copy .env.example .env"
+4. Edita el .env para que este actualizado con tu base de dato
 
-4.Para empezaer el servicio escribe "node server.js" en la terminal
+
+Para empezar el servicio escribe "node server.js" en la terminal
 
 
 Use Postman to hit:
