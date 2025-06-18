@@ -6,6 +6,8 @@ Funciona con Node.JS v22.11.0.
 Empecemos con Node.JS
 
 1.Copia o descarga los archivos
+- Usa "git clone https://github.com/Axel0fficial/fronteraModerna.git"
+
 2.En tu carpeta de proyecto escribe "npm install"
 3.Populate ".env" from ".env.example"
 .env psoiblemente no existe en tu carpeta de proyecto 
@@ -33,6 +35,8 @@ MySQL Setup
 
 
 Para empezar el servicio escribe "node server.js" en la terminal
+
+Notar que tu base de datos estara vacia voy a crear algo para eso 
 
 
 Use Postman to hit:
