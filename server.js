@@ -1,10 +1,11 @@
-const express   = require('express');
-const path      = require('path');
+const express = require('express');
+const path    = require('path');
 const sequelize = require('./config/database');
 const dotenv    = require('dotenv');
 const authRoutes   = require('./routes/auth');
 const formRoutes   = require('./routes/forms');
 const supportRoutes= require('./routes/support');
+const userRoutes   = require('./routes/users');
 
 dotenv.config();
 const app = express();
@@ -14,6 +15,7 @@ app.use(express.json());
 app.use('/api/auth',    authRoutes);
 app.use('/api/forms',   formRoutes);
 app.use('/api/support', supportRoutes);
+app.use('/api/users',   userRoutes);
 
 // Serve static frontend
 app.use(express.static(path.join(__dirname, 'public')));
