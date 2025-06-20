@@ -1,5 +1,3 @@
-
-// routes/support.js
 const express = require('express');
 const { authenticateToken, authorizeRoles } = require('../middleware/auth');
 const SupportTicket = require('../models/SupportTicket');

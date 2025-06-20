@@ -6,14 +6,14 @@ require('dotenv').config();
 
 const router = express.Router();
 
-
-// Register (visitorUser by default)
+// Register (optionally accepts a role)
 router.post('/register', async (req, res) => {
-  const { username, password, email } = req.body;
+  const { username, password, email, role } = req.body;
   const passwordHash = await bcrypt.hash(password, 10);
+  const assignedRole = role || 'visitorUser';
   try {
-    const user = await User.create({ username, passwordHash, email, role: 'visitorUser' });
-    res.json({ id: user.id, username: user.username });
+    const user = await User.create({ username, passwordHash, email, role: assignedRole });
+    res.json({ id: user.id, username: user.username, role: user.role });
   } catch (err) {
     res.status(400).json({ error: err.message });
   }

@@ -7,79 +7,123 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <!-- Login Section -->
-  <div id="loginSection">
-    <h2>Login</h2>
-    <form id="loginForm">
-      <input type="text" id="username" placeholder="Username" required />
-      <input type="password" id="password" placeholder="Password" required />
-      <button type="submit">Login</button>
-    </form>
-    <div id="loginError" class="error"></div>
-  </div>
+  <header>
+    <img id="headerLogo" src="header.jpg" alt="Company Logo" />
+  </header>
 
-  <!-- Navigation Bar -->
   <nav id="navBar" class="hidden">
     <button data-section="dashboardSection">Dashboard</button>
     <button data-section="uploadSection">Submit Form</button>
     <button data-section="reviewSection" class="moderator hidden">Review Forms</button>
     <button data-section="supportSection">Support</button>
     <button data-section="profileSection">Profile</button>
+    <button data-section="adminSection" class="admin hidden">User Management</button>
     <button id="logoutBtn">Logout</button>
   </nav>
 
-  <!-- Dashboard -->
-  <div id="dashboardSection" class="hidden">
-    <h2>Dashboard</h2>
-    <p>Welcome, <span id="displayUsername"></span>!</p>
-  </div>
+  <main id="mainContent">
+    <!-- Login Section -->
+    <div id="loginSection">
+      <h2>Login</h2>
+      <form id="loginForm">
+        <input type="text" id="username" placeholder="Username" required />
+        <input type="password" id="password" placeholder="Password" required />
+        <button type="submit">Login</button>
+      </form>
+      <div id="loginError" class="error"></div>
+    </div>
 
-  <!-- Upload Section -->
-  <div id="uploadSection" class="hidden">
-    <h2>Submit PDF Form</n2>
-    <form id="uploadForm">
-      <input type="file" id="pdfFile" accept="application/pdf" required />
-      <button type="submit">Upload</button>
-    </form>
-    <div id="uploadMessage"></div>
-  </div>
+    <!-- Dashboard -->
+    <div id="dashboardSection" class="hidden">
+      <h2>Dashboard</h2>
+      <p>Welcome, <span id="displayUsername"></span>! (<span id="displayRole"></span>)</p>
+    </div>
 
-  <!-- Review Section (Moderator) -->
-  <div id="reviewSection" class="hidden">
-    <h2>Review Forms</h2>
-    <table id="formsTable">
-      <thead>
-        <tr><th>ID</th><th>Submitted By</th><th>Status</th><th>Action</th></tr>
-      </thead>
-      <tbody></tbody>
-    </table>
-  </div>
+    <!-- Upload Section -->
+    <div id="uploadSection" class="hidden">
+      <h2>Submit PDF Form</h2>
+      <form id="uploadForm">
+        <input type="file" id="pdfFile" accept="application/pdf" required />
+        <button type="submit">Upload</button>
+      </form>
+      <div id="uploadMessage"></div>
+    </div>
 
-  <!-- Support Section -->
-  <div id="supportSection" class="hidden">
-    <h2>Support Tickets</h2>
-    <form id="supportForm">
-      <textarea id="supportMessage" placeholder="Describe your issue" required></textarea>
-      <button type="submit">Submit Ticket</button>
-    </form>
-    <ul id="ticketsList"></ul>
-  </div>
+    <!-- Review Section (Moderator) -->
+    <div id="reviewSection" class="hidden">
+      <h2>Review Forms</h2>
+      <table id="formsTable">
+        <thead>
+          <tr><th>ID</th><th>Submitted By</th><th>Status</th><th>Action</th></tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
 
-  <!-- Profile Section -->
-  <div id="profileSection" class="hidden">
-    <h2>Your Profile</h2>
-    <form id="profileForm">
-      <input type="text" id="p_username" placeholder="Username" required />
-      <input type="email" id="p_email" placeholder="Email" required />
-      <input type="number" id="p_age" placeholder="Age" />
-      <input type="date" id="p_birthday" placeholder="Birthday" />
-      <input type="text" id="p_nationalId" placeholder="National ID" />
-      <input type="text" id="p_passportNumber" placeholder="Passport Number" />
-      <input type="date" id="p_passportExpiry" placeholder="Passport Expiry" />
-      <button type="submit">Update Profile</button>
-    </form>
-    <div id="profileMessage"></div>
-  </div>
+    <!-- Support Section -->
+    <div id="supportSection" class="hidden">
+      <h2>Support Tickets</h2>
+      <form id="supportForm">
+        <textarea id="supportMessage" placeholder="Describe your issue" required></textarea>
+        <button type="submit">Submit Ticket</button>
+      </form>
+      <ul id="ticketsList"></ul>
+    </div>
+
+    <!-- Profile Section -->
+    <div id="profileSection" class="hidden">
+      <h2>Your Profile</h2>
+      <form id="profileForm">
+        <input type="text" id="p_username" placeholder="Username" required />
+        <input type="email" id="p_email" placeholder="Email" required />
+        <input type="number" id="p_age" placeholder="Age" />
+        <input type="date" id="p_birthday" placeholder="Birthday" />
+        <input type="text" id="p_nationalId" placeholder="National ID" />
+        <input type="text" id="p_passportNumber" placeholder="Passport Number" />
+        <input type="date" id="p_passportExpiry" placeholder="Passport Expiry" />
+        <button type="submit">Update Profile</button>
+      </form>
+      <div id="profileMessage"></div>
+    </div>
+
+    <!-- Admin Section -->
+    <div id="adminSection" class="hidden">
+      <h2>User Management</h2>
+      <table id="usersTable">
+        <thead>
+          <tr><th>ID</th><th>Username</th><th>Email</th><th>Role</th><th>Action</th></tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+      <div id="userFormContainer" class="hidden">
+        <h3>Edit User</h3>
+        <form id="userForm">
+          <input type="text" id="u_username" placeholder="Username" required />
+          <input type="email" id="u_email" placeholder="Email" required />
+          <select id="u_role">
+            <option value="visitorUser">Visitor</option>
+            <option value="moderator">Moderator</option>
+            <option value="supportUser">Support</option>
+            <option value="admin">Admin</option>
+          </select>
+          <input type="number" id="u_age" placeholder="Age" />
+          <input type="date" id="u_birthday" placeholder="Birthday" />
+          <input type="text" id="u_nationalId" placeholder="National ID" />
+          <input type="text" id="u_passportNumber" placeholder="Passport Number" />
+          <input type="date" id="u_passportExpiry" placeholder="Passport Expiry" />
+          <input type="password" id="u_password" placeholder="New Password (optional)" />
+          <button type="submit">Save</button>
+          <button type="button" id="cancelEdit">Cancel</button>
+          <button type="button" id="deleteUser" class="danger">Delete User</button>
+        </form>
+        <div id="userFormMessage"></div>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <p>Contact us at: datalake@example.com | Address: 1234 Data St, Analytics City</p>
+  </footer>
 
   <script src="script.js"></script>
 </body>

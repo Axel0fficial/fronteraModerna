@@ -3,14 +3,24 @@ let authToken = null;
 let userRole = null;
 let currentUser = { id: null };
 
+function initializeUI() {
+  // Show header, nav, footer after login
+  document.querySelector('header').style.display = 'block';
+  document.querySelector('nav').style.display = 'flex';
+  document.querySelector('footer').style.display = 'block';
+}
+
 function showSection(sectionId) {
-  document.querySelectorAll('body > div, nav').forEach(el => el.classList.add('hidden'));
-  document.getElementById('loginSection').classList.add('hidden');
-  document.getElementById('navBar').classList.remove('hidden');
+  // Hide all sections within mainContent
+  document.querySelectorAll('#mainContent > div').forEach(el => el.classList.add('hidden'));
+  // Show target section
   document.getElementById(sectionId).classList.remove('hidden');
-  // Show moderator-only links
+  // Show or hide moderator/admin buttons
   document.querySelectorAll('.moderator').forEach(el => {
     el.classList.toggle('hidden', !(userRole === 'moderator' || userRole === 'admin'));
+  });
+  document.querySelectorAll('.admin').forEach(el => {
+    el.classList.toggle('hidden', userRole !== 'admin');
   });
 }
 
@@ -27,7 +37,8 @@ async function loginUser(username, password) {
     userRole = payload.role;
     currentUser.id = payload.id;
     document.getElementById('displayUsername').textContent = username;
-    setupNav();
+    document.getElementById('displayRole').textContent = userRole;
+    initializeUI();
     showSection('dashboardSection');
   } else {
     document.getElementById('loginError').textContent = data.error;
@@ -42,19 +53,19 @@ document.getElementById('loginForm').addEventListener('submit', e => {
   );
 });
 
-function setupNav() {
-  document.getElementById('navBar').classList.remove('hidden');
-  document.querySelectorAll('#navBar button[data-section]').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const sec = btn.getAttribute('data-section');
-      if (sec === 'reviewSection') loadForms();
-      if (sec === 'supportSection') loadTickets();
-      if (sec === 'profileSection') loadProfile();
-      showSection(sec);
-    });
+
+// Set up nav buttons
+document.querySelectorAll('#navBar button[data-section]').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const sec = btn.getAttribute('data-section');
+    if (sec === 'reviewSection') loadForms();
+    if (sec === 'supportSection') loadTickets();
+    if (sec === 'profileSection') loadProfile();
+    if (sec === 'adminSection') loadUsers();
+    showSection(sec);
   });
-  document.getElementById('logoutBtn').addEventListener('click', () => location.reload());
-}
+});
+document.getElementById('logoutBtn').addEventListener('click', () => location.reload());
 
 // Upload Form
 document.getElementById('uploadForm').addEventListener('submit', async e => {
