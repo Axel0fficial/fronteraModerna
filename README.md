@@ -38,22 +38,22 @@ Para empezar el servicio escribe "node server.js" en la terminal
 
 Notar que tu base de datos estara vacia voy a crear algo para eso 
 
-Usa Postman para crear un usuario
-Request tipo -> POST
-URL -> http://localhost:3000/api/auth/register
-Headers ->Key:Content-Type   Value:application/json
-Body -> raw -> 
-{
-  "username": "user",
-  "password": "password",
-  "email": "example@example.com",
-  "role":"role"
-}
+Usa Postman para crear un usuario:
+ - Request tipo -> POST
+ - URL -> http://localhost:3000/api/auth/register
+ - Headers ->Key:Content-Type   Value:application/json
+ - Body -> raw -> 
+      {
+        "username": "user",
+        "password": "password",
+        "email": "example@example.com",
+        "role":"role"
+      }
 Roles disponibles para crear:
-visitorUser
-moderator
-supportUser
-admin
+ - visitorUser
+ - moderator
+ - supportUser
+ - admin
 
 Use Postman to hit:
 
