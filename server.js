@@ -29,7 +29,8 @@ app.get('*', (req, res) => {
 sequelize
   .sync({ alter: true })
   .then(() => {
+    const host = 'localhost';
     const port = process.env.PORT || 3000;
-    app.listen(port, () => console.log(`Server running on port ${port}`));
+    app.listen(port, host, () => console.log(`Server running on port http://${host}:${port}`));
   })
   .catch(err => console.error('DB sync failed:', err));

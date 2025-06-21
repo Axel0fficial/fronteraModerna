@@ -89,37 +89,83 @@
     <!-- Admin Section -->
     <div id="adminSection" class="hidden">
       <h2>User Management</h2>
+      <div class="admin-actions">
+        <button id="createUserBtn">+ Create User</button>
+      </div>
+      <div id="userFilters">
+        <select id="roleFilter">
+          <option value="">All Roles</option>
+          <option value="visitorUser">Visitor</option>
+          <option value="moderator">Moderator</option>
+          <option value="supportUser">Support</option>
+          <option value="admin">Admin</option>
+        </select>
+        <button id="sortAlpha">Sort A→Z</button>
+      </div>
       <table id="usersTable">
         <thead>
-          <tr><th>ID</th><th>Username</th><th>Email</th><th>Role</th><th>Action</th></tr>
+          <tr><th>ID</th><th>Username</th><th>Email</th><th>Role</th></tr>
         </thead>
         <tbody></tbody>
       </table>
-      <div id="userFormContainer" class="hidden">
-        <h3>Edit User</h3>
-        <form id="userForm">
-          <input type="text" id="u_username" placeholder="Username" required />
-          <input type="email" id="u_email" placeholder="Email" required />
-          <select id="u_role">
-            <option value="visitorUser">Visitor</option>
-            <option value="moderator">Moderator</option>
-            <option value="supportUser">Support</option>
-            <option value="admin">Admin</option>
-          </select>
-          <input type="number" id="u_age" placeholder="Age" />
-          <input type="date" id="u_birthday" placeholder="Birthday" />
-          <input type="text" id="u_nationalId" placeholder="National ID" />
-          <input type="text" id="u_passportNumber" placeholder="Passport Number" />
-          <input type="date" id="u_passportExpiry" placeholder="Passport Expiry" />
-          <input type="password" id="u_password" placeholder="New Password (optional)" />
-          <button type="submit">Save</button>
-          <button type="button" id="cancelEdit">Cancel</button>
-          <button type="button" id="deleteUser" class="danger">Delete User</button>
-        </form>
-        <div id="userFormMessage"></div>
-      </div>
     </div>
   </main>
+  <!-- Modal -->
+  <div id="userModal" class="modal hidden">
+    <div class="modal-content">
+      <span id="modalClose" class="close">&times;</span>
+      <h3>Edit User</h3>
+      <form id="modalForm" data-user-id="">
+        <!-- duplicate your admin fields here -->
+        <input type="text" id="m_username" placeholder="Username" required />
+        <input type="email" id="m_email" placeholder="Email" required />
+        <select id="m_role">
+          <option value="visitorUser">Visitor</option>
+          <option value="moderator">Moderator</option>
+          <option value="supportUser">Support</option>
+          <option value="admin">Admin</option>
+        </select>
+        <input type="number" id="m_age" placeholder="Age" />
+        <input type="date"   id="m_birthday" />
+        <input type="text"   id="m_nationalId" placeholder="National ID" />
+        <input type="text"   id="m_passportNumber" placeholder="Passport Number" />
+        <input type="date"   id="m_passportExpiry" />
+        <input type="password" id="m_password" placeholder="New Password" />
+        <div class="modal-actions">
+          <button type="submit">Save</button>
+          <button type="button" id="deleteUserBtn" class="danger">Delete</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div id="createUserModal" class="modal hidden">
+    <div class="modal-content">
+      <span id="createModalClose" class="close">&times;</span>
+      <h3>Create New User</h3>
+      <form id="createUserForm">
+        <input type="text" id="c_username" placeholder="Username" required />
+        <input type="email" id="c_email" placeholder="Email" required />
+        <select id="c_role">
+          <option value="visitorUser">Visitor</option>
+          <option value="moderator">Moderator</option>
+          <option value="supportUser">Support</option>
+          <option value="admin">Admin</option>
+        </select>
+        <input type="number" id="c_age" placeholder="Age" />
+        <input type="date" id="c_birthday" />
+        <input type="text" id="c_nationalId" placeholder="National ID" />
+        <input type="text" id="c_passportNumber" placeholder="Passport Number" />
+        <input type="date" id="c_passportExpiry" />
+        <input type="password" id="c_password" placeholder="Password" required />
+        <div class="modal-actions">
+          <button type="submit">Create</button>
+          <button type="button" id="createCancelBtn">Cancel</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
 
   <footer>
     <p>Contact us at: datalake@example.com | Address: 1234 Data St, Analytics City</p>

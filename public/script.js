@@ -1,7 +1,15 @@
 const API_HOST = 'http://localhost:3000';
 let authToken = null;
 let userRole = null;
+let sortAsc = true;
 let currentUser = { id: null };
+
+const ROLE_PERMISSIONS = {
+  visitorUser: ['dashboardSection','uploadSection','supportSection','profileSection'],
+  moderator:   ['dashboardSection','uploadSection','reviewSection','supportSection','profileSection'],
+  supportUser: ['dashboardSection','uploadSection','supportSection','profileSection'],
+  admin:       ['dashboardSection','uploadSection','reviewSection','supportSection','profileSection','adminSection'],
+};
 
 function initializeUI() {
   // Show header, nav, footer after login
@@ -10,24 +18,47 @@ function initializeUI() {
   document.querySelector('footer').style.display = 'block';
 }
 
+function renderNav() {
+  const navBar = document.getElementById('navBar');
+  navBar.innerHTML = '';
+  const labels = {
+    dashboardSection: 'Dashboard',
+    uploadSection:    'Submit Form',
+    reviewSection:    'Review Forms',
+    supportSection:   'Support',
+    profileSection:   'Profile',
+    adminSection:     'User Management',
+  };
+  ROLE_PERMISSIONS[userRole].forEach(sec => {
+    const btn = document.createElement('button');
+    btn.textContent = labels[sec];
+    btn.dataset.section = sec;
+    btn.addEventListener('click', () => {
+      if (sec === 'reviewSection') loadForms();
+      if (sec === 'supportSection') loadTickets();
+      if (sec === 'profileSection') loadProfile();
+      if (sec === 'adminSection') loadUsers();
+      showSection(sec);
+    });
+    navBar.appendChild(btn);
+  });
+  const logout = document.createElement('button');
+  logout.textContent = 'Logout';
+  logout.addEventListener('click', () => location.reload());
+  navBar.appendChild(logout);
+}
+
 function showSection(sectionId) {
-  // Hide all sections within mainContent
+  if (!ROLE_PERMISSIONS[userRole].includes(sectionId)) {
+    return alert('🚫 You do not have access to that page.');
+  }
   document.querySelectorAll('#mainContent > div').forEach(el => el.classList.add('hidden'));
-  // Show target section
   document.getElementById(sectionId).classList.remove('hidden');
-  // Show or hide moderator/admin buttons
-  document.querySelectorAll('.moderator').forEach(el => {
-    el.classList.toggle('hidden', !(userRole === 'moderator' || userRole === 'admin'));
-  });
-  document.querySelectorAll('.admin').forEach(el => {
-    el.classList.toggle('hidden', userRole !== 'admin');
-  });
 }
 
 async function loginUser(username, password) {
   const res = await fetch(`${API_HOST}/api/auth/login`, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
+    method: 'POST', headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ username, password })
   });
   const data = await res.json();
@@ -37,14 +68,14 @@ async function loginUser(username, password) {
     userRole = payload.role;
     currentUser.id = payload.id;
     document.getElementById('displayUsername').textContent = username;
-    document.getElementById('displayRole').textContent = userRole;
+    document.getElementById('displayRole').textContent     = userRole;
     initializeUI();
+    renderNav();
     showSection('dashboardSection');
   } else {
     document.getElementById('loginError').textContent = data.error;
   }
 }
-
 document.getElementById('loginForm').addEventListener('submit', e => {
   e.preventDefault();
   loginUser(
@@ -52,7 +83,6 @@ document.getElementById('loginForm').addEventListener('submit', e => {
     document.getElementById('password').value
   );
 });
-
 
 // Set up nav buttons
 document.querySelectorAll('#navBar button[data-section]').forEach(btn => {
@@ -159,4 +189,130 @@ document.getElementById('profileForm').addEventListener('submit', async e => {
     body: JSON.stringify(body)
   });
   document.getElementById('profileMessage').textContent = res.ok ? 'Profile updated' : 'Update failed';
+});
+
+async function loadUsers() {
+  const role = document.getElementById('roleFilter').value;
+  let url = `${API_HOST}/api/users`;
+  if (role) url += `?role=${role}`;
+  const res = await fetch(url, { headers: { 'Authorization': 'Bearer ' + authToken } });
+  let users = await res.json();
+  users.sort((a,b) => a.username.localeCompare(b.username) * (sortAsc ? 1 : -1));
+  const tbody = document.querySelector('#usersTable tbody'); tbody.innerHTML = '';
+  users.forEach(u => {
+    const tr = document.createElement('tr');
+    tr.innerHTML = `<td>${u.id}</td><td>${u.username}</td><td>${u.email}</td><td>${u.role}`;
+    tr.addEventListener('click', () => openModal(u));
+    tbody.appendChild(tr);
+  });
+}
+
+// Filters
+document.getElementById('roleFilter').addEventListener('change', loadUsers);
+document.getElementById('sortAlpha').addEventListener('click', () => { sortAsc = !sortAsc; loadUsers(); });
+
+function openModal(u) {
+  const modal = document.getElementById('userModal');
+  modal.classList.remove('hidden');
+
+  const form = document.getElementById('modalForm');
+  form.dataset.userId = u.id;
+
+  document.getElementById('m_username').value      = u.username;
+  document.getElementById('m_email').value         = u.email;
+  document.getElementById('m_role').value          = u.role;
+  document.getElementById('m_age').value           = u.age || '';
+  document.getElementById('m_birthday').value      = u.birthday || '';
+  document.getElementById('m_nationalId').value    = u.nationalId || '';
+  document.getElementById('m_passportNumber').value= u.passportNumber || '';
+  document.getElementById('m_passportExpiry').value= u.passportExpiry || '';
+  document.getElementById('m_password').value      = '';
+}
+
+// 4) Close modal
+document.getElementById('modalClose').addEventListener('click', () => {
+  document.getElementById('userModal').classList.add('hidden');
+});
+
+document.getElementById('modalForm').addEventListener('submit', async e => {
+  e.preventDefault();
+  const id = e.target.dataset.userId;
+  const body = {
+    username: document.getElementById('m_username').value,
+    email:    document.getElementById('m_email').value,
+    role:     document.getElementById('m_role').value,
+    age:      document.getElementById('m_age').value,
+    birthday: document.getElementById('m_birthday').value,
+    nationalId:    document.getElementById('m_nationalId').value,
+    passportNumber: document.getElementById('m_passportNumber').value,
+    passportExpiry: document.getElementById('m_passportExpiry').value
+  };
+  const pwd = document.getElementById('m_password').value;
+  if (pwd) body.password = pwd;
+
+  const res = await fetch(`${API_HOST}/api/users/${id}`, {
+    method: 'PATCH',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer ' + authToken
+    },
+    body: JSON.stringify(body)
+  });
+  if (res.ok) {
+    loadUsers();
+    document.getElementById('userModal').classList.add('hidden');
+  } else {
+    alert('Update failed');
+  }
+});
+
+// 6) Delete user
+document.getElementById('deleteUserBtn').addEventListener('click', async () => {
+  if (!confirm('Delete this user?')) return;
+  const id = document.getElementById('modalForm').dataset.userId;
+  const res = await fetch(`${API_HOST}/api/users/${id}`, {
+    method: 'DELETE',
+    headers: { 'Authorization': 'Bearer ' + authToken }
+  });
+  if (res.ok) {
+    loadUsers();
+    document.getElementById('userModal').classList.add('hidden');
+  } else {
+    alert('Delete failed');
+  }
+});
+
+document.getElementById('createUserBtn').addEventListener('click', () => {
+  document.getElementById('createUserModal').classList.remove('hidden');
+});
+document.getElementById('createModalClose').addEventListener('click', () => {
+  document.getElementById('createUserModal').classList.add('hidden');
+});
+document.getElementById('createCancelBtn').addEventListener('click', () => {
+  document.getElementById('createUserModal').classList.add('hidden');
+});
+document.getElementById('createUserForm').addEventListener('submit', async e => {
+  e.preventDefault();
+  const body = {
+    username: document.getElementById('c_username').value,
+    email:    document.getElementById('c_email').value,
+    role:     document.getElementById('c_role').value,
+    age:      document.getElementById('c_age').value,
+    birthday: document.getElementById('c_birthday').value,
+    nationalId: document.getElementById('c_nationalId').value,
+    passportNumber: document.getElementById('c_passportNumber').value,
+    passportExpiry: document.getElementById('c_passportExpiry').value,
+    password: document.getElementById('c_password').value
+  };
+  const res = await fetch(`${API_HOST}/api/auth/register`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + authToken },
+    body: JSON.stringify(body)
+  });
+  if (res.ok) {
+    loadUsers();
+    document.getElementById('createUserModal').classList.add('hidden');
+  } else {
+    alert('Create failed');
+  }
 });
