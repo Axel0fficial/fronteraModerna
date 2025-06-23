@@ -122,11 +122,23 @@ async function loadForms() {
   forms.forEach(f => {
     const tr = document.createElement('tr');
     tr.innerHTML = `
-      <td>${f.id}</td>
-      <td>${f.submittedBy.username}</td>
-      <td>${f.status}</td>
-      <td>${f.status==='pending'? `<button onclick="updateStatus(${f.id}, 'approved')">Approve</button><button onclick="updateStatus(${f.id}, 'rejected')">Reject</button>` : ''}</td>
-    `;
+       <td>${f.id}</td>
+       <td>${f.submittedBy.username}</td>
+       <td>${f.status}</td>
+       <td>
+         <a 
+           href="${API_HOST}/${f.pdfUrl}" 
+           target="_blank" 
+           rel="noopener noreferrer"
+         >View</a>
+       </td>
+       <td>
+         ${f.status==='pending'
+           ? `<button onclick="updateStatus(${f.id},'approved')">✅</button>
+              <button onclick="updateStatus(${f.id},'rejected')">✖️</button>`
+           : ''}
+       </td>
+     `;
     tbody.appendChild(tr);
   });
 }
@@ -314,5 +326,45 @@ document.getElementById('createUserForm').addEventListener('submit', async e => 
     document.getElementById('createUserModal').classList.add('hidden');
   } else {
     alert('Create failed');
+  }
+});
+
+// 1) Open & close the Sign-Up modal
+document.getElementById('signUpBtn').addEventListener('click', () => {
+  document.getElementById('signUpModal').classList.remove('hidden');
+});
+document.getElementById('signUpClose').addEventListener('click', () => {
+  document.getElementById('signUpModal').classList.add('hidden');
+});
+document.getElementById('signUpCancel').addEventListener('click', () => {
+  document.getElementById('signUpModal').classList.add('hidden');
+});
+
+// 2) Handle the Sign-Up form submission
+document.getElementById('signUpForm').addEventListener('submit', async e => {
+  e.preventDefault();
+  const body = {
+    username:       document.getElementById('s_username').value,
+    email:          document.getElementById('s_email').value,
+    password:       document.getElementById('s_password').value,
+    age:            document.getElementById('s_age').value,
+    birthday:       document.getElementById('s_birthday').value,
+    nationalId:     document.getElementById('s_nationalId').value,
+    passportNumber: document.getElementById('s_passportNumber').value,
+    passportExpiry: document.getElementById('s_passportExpiry').value
+  };
+
+  const res = await fetch(`${API_HOST}/api/auth/register`, {
+    method:  'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body:    JSON.stringify(body)
+  });
+
+  if (res.ok) {
+    alert('Account created! You can now log in.');
+    document.getElementById('signUpModal').classList.add('hidden');
+  } else {
+    const err = await res.json();
+    alert('Sign-up failed: ' + err.error);
   }
 });

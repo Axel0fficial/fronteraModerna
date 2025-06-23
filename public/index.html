@@ -29,6 +29,7 @@
         <input type="text" id="username" placeholder="Username" required />
         <input type="password" id="password" placeholder="Password" required />
         <button type="submit">Login</button>
+        <button id="signUpBtn" type="button">Sign Up</button>
       </form>
       <div id="loginError" class="error"></div>
     </div>
@@ -54,7 +55,13 @@
       <h2>Review Forms</h2>
       <table id="formsTable">
         <thead>
-          <tr><th>ID</th><th>Submitted By</th><th>Status</th><th>Action</th></tr>
+          <tr>
+            <th>ID</th>
+            <th>Submitted By</th>
+            <th>Status</th>
+            <th>File</th>               
+            <th>Action</th>
+          </tr>
         </thead>
         <tbody></tbody>
       </table>
@@ -138,6 +145,28 @@
       </form>
     </div>
   </div>
+  <!-- Sign Up Modal -->
+  <div id="signUpModal" class="modal hidden">
+    <div class="modal-content">
+      <span id="signUpClose" class="close">&times;</span>
+      <h3>Create Account</h3>
+      <form id="signUpForm">
+        <input type="text"   id="s_username"      placeholder="Username" required />
+        <input type="email"  id="s_email"         placeholder="Email"    required />
+        <input type="password" id="s_password"    placeholder="Password" required />
+        <input type="number" id="s_age"           placeholder="Age" />
+        <input type="date"   id="s_birthday"      placeholder="Birthday" />
+        <input type="text"   id="s_nationalId"    placeholder="National ID" />
+        <input type="text"   id="s_passportNumber"placeholder="Passport Number" />
+        <input type="date"   id="s_passportExpiry"placeholder="Passport Expiry" />
+        <div class="modal-actions">
+          <button type="submit">Sign Up</button>
+          <button type="button" id="signUpCancel">Cancel</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
 
   <div id="createUserModal" class="modal hidden">
     <div class="modal-content">

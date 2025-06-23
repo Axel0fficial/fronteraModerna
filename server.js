@@ -19,6 +19,7 @@ app.use('/api/users',   userRoutes);
 
 // Serve static frontend
 app.use(express.static(path.join(__dirname, 'public')));
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 // HTML5 history mode fallback
 app.get('*', (req, res) => {
@@ -27,10 +28,8 @@ app.get('*', (req, res) => {
 
 // Sync DB and start
 sequelize
-  .sync({ alter: true })
+  .sync({ force: true })
   .then(() => {
-    const host = 'localhost';
     const port = process.env.PORT || 3000;
-    app.listen(port, host, () => console.log(`Server running on port http://${host}:${port}`));
-  })
-  .catch(err => console.error('DB sync failed:', err));
+    app.listen(port, () => console.log(`🚀 Server (re)created schema and is running on http://localhost:${port}`));
+  });
