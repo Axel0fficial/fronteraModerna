@@ -20,6 +20,8 @@ app.use('/api/users',   userRoutes);
 // Serve static frontend
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+app.use('/templates', express.static(path.join(__dirname, 'public', 'templates')));
+
 
 // HTML5 history mode fallback
 app.get('*', (req, res) => {

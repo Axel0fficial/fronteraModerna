@@ -11,22 +11,15 @@
     <img id="headerLogo" src="header.jpg" alt="Company Logo" />
   </header>
 
-  <nav id="navBar" class="hidden">
-    <button data-section="dashboardSection">Dashboard</button>
-    <button data-section="uploadSection">Submit Form</button>
-    <button data-section="reviewSection" class="moderator hidden">Review Forms</button>
-    <button data-section="supportSection">Support</button>
-    <button data-section="profileSection">Profile</button>
-    <button data-section="adminSection" class="admin hidden">User Management</button>
-    <button id="logoutBtn">Logout</button>
-  </nav>
+  <nav id="navBar" class="hidden"></nav>
 
   <main id="mainContent">
+
     <!-- Login Section -->
     <div id="loginSection">
       <h2>Login</h2>
       <form id="loginForm">
-        <input type="text" id="username" placeholder="Username" required />
+        <input type="text"    id="username" placeholder="Username" required />
         <input type="password" id="password" placeholder="Password" required />
         <button type="submit">Login</button>
         <button id="signUpBtn" type="button">Sign Up</button>
@@ -40,17 +33,118 @@
       <p>Welcome, <span id="displayUsername"></span>! (<span id="displayRole"></span>)</p>
     </div>
 
-    <!-- Upload Section -->
+    <!-- Submit Form Section -->
     <div id="uploadSection" class="hidden">
-      <h2>Submit PDF Form</h2>
-      <form id="uploadForm">
-        <input type="file" id="pdfFile" accept="application/pdf" required />
-        <button type="submit">Upload</button>
-      </form>
-      <div id="uploadMessage"></div>
+      <h2>Submit Form</h2>
+      <p>Please select your case below and then complete the required information on the case page.</p>
+      <div id="caseButtons">
+        <button data-case="case1Section">Case 1</button>
+        <button data-case="case2Section">Case 2</button>
+        <button data-case="case3Section">Case 3</button>
+        <button data-case="case4Section">Case 4</button>
+        <button data-case="case5Section">Case 5</button>
+        <button data-case="case6Section">Case 6</button>
+      </div>
     </div>
 
-    <!-- Review Section (Moderator) -->
+    <!-- Case 1: SAG/Aduanas Affidavit -->
+    <div id="case1Section" class="hidden">
+      <h2>Case 1: SAG/Aduanas Affidavit</h2>
+      <p>Please view the affidavit below, fill it out, then upload your completed copy.</p>
+      <object
+        data="/templates/case1_template.pdf#toolbar=0"
+        type="application/pdf"
+        width="100%" height="600"
+      >
+        <p>Your browser doesn’t support inline PDFs.
+          <a href="/templates/case1_template.pdf" target="_blank">Download it here</a>
+        </p>
+      </object>
+
+      <form id="case1UploadForm">
+        <label for="case1FilledPdf">Upload completed PDF:</label>
+        <input type="file" id="case1FilledPdf" accept="application/pdf" required />
+        <button type="submit">Submit Case 1</button>
+      </form>
+
+      <button class="back-btn">Back</button>
+    </div>
+
+    <!-- Case 2: Salida Temporal de Vehículos -->
+    <div id="case2Section" class="hidden">
+      <h2>Case 2: Salida Temporal de Vehículos</h2>
+      <p>Please view the vehicle exit form below, fill it out, then upload your completed copy.</p>
+      <object
+        data="/templates/case2_template.pdf#toolbar=0"
+        type="application/pdf"
+        width="100%" height="600"
+      >
+        <p>Your browser doesn’t support inline PDFs.
+          <a href="/templates/case2_template.pdf" target="_blank">Download it here</a>
+        </p>
+      </object>
+
+      <form id="case2UploadForm">
+        <label for="case2FilledPdf">Upload completed PDF:</label>
+        <input type="file" id="case2FilledPdf" accept="application/pdf" required />
+        <button type="submit">Submit Case 2</button>
+      </form>
+
+      <button class="back-btn">Back</button>
+    </div>
+
+
+    <!-- Case 3 -->
+    <div id="case3Section" class="hidden">
+      <h2>Case 3</h2>
+      <p>Placeholder for case 3 details and file uploads.</p>
+      <form id="case3Form">
+        <input type="file" id="case3Files" multiple />
+        <button type="submit">Submit Case 3</button>
+      </form>
+      <button class="back-btn">Back</button>
+    </div>
+
+    <!-- Case 4 -->
+    <div id="case4Section" class="hidden">
+      <h2>Case 4</h2>
+      <p>Placeholder for case 4 details and file uploads.</p>
+      <form id="case4Form">
+        <input type="file" id="case4Files" multiple />
+        <button type="submit">Submit Case 4</button>
+      </form>
+      <button class="back-btn">Back</button>
+    </div>
+
+    <!-- Case 5 -->
+    <div id="case5Section" class="hidden">
+      <h2>Case 5</h2>
+      <p>
+        For Case 5 you must be at least 18 years old and submit between 1 and 7 PDF documents.
+        Required documents are:<br>
+        • Document A<br>
+        • Document B<br>
+        • Document C
+      </p>
+      <form id="case5Form">
+        <input type="file" id="case5Files" accept="application/pdf" multiple />
+        <button type="submit" id="case5SubmitBtn">Submit Case 5</button>
+      </form>
+      <button class="back-btn">Back</button>
+    </div>
+
+    <!-- Case 6 -->
+    <div id="case6Section" class="hidden">
+      <h2>Case 6</h2>
+      <p>Placeholder for case 6 details and file uploads.</p>
+      <form id="case6Form">
+        <input type="file" id="case6Files" multiple />
+        <button type="submit">Submit Case 6</button>
+      </form>
+      <button class="back-btn">Back</button>
+    </div>
+
+    <!-- Review Forms (Moderator/Admin) -->
     <div id="reviewSection" class="hidden">
       <h2>Review Forms</h2>
       <table id="formsTable">
@@ -59,7 +153,7 @@
             <th>ID</th>
             <th>Submitted By</th>
             <th>Status</th>
-            <th>File</th>               
+            <th>File</th>
             <th>Action</th>
           </tr>
         </thead>
@@ -67,7 +161,7 @@
       </table>
     </div>
 
-    <!-- Support Section -->
+    <!-- Support Tickets -->
     <div id="supportSection" class="hidden">
       <h2>Support Tickets</h2>
       <form id="supportForm">
@@ -77,23 +171,23 @@
       <ul id="ticketsList"></ul>
     </div>
 
-    <!-- Profile Section -->
+    <!-- Profile -->
     <div id="profileSection" class="hidden">
       <h2>Your Profile</h2>
       <form id="profileForm">
-        <input type="text" id="p_username" placeholder="Username" required />
-        <input type="email" id="p_email" placeholder="Email" required />
-        <input type="number" id="p_age" placeholder="Age" />
-        <input type="date" id="p_birthday" placeholder="Birthday" />
-        <input type="text" id="p_nationalId" placeholder="National ID" />
-        <input type="text" id="p_passportNumber" placeholder="Passport Number" />
-        <input type="date" id="p_passportExpiry" placeholder="Passport Expiry" />
+        <input type="text"    id="p_username"       placeholder="Username" required />
+        <input type="email"   id="p_email"          placeholder="Email"    required />
+        <input type="number"  id="p_age"            placeholder="Age" />
+        <input type="date"    id="p_birthday"       placeholder="Birthday" />
+        <input type="text"    id="p_nationalId"     placeholder="National ID" />
+        <input type="text"    id="p_passportNumber" placeholder="Passport Number" />
+        <input type="date"    id="p_passportExpiry" placeholder="Passport Expiry" />
         <button type="submit">Update Profile</button>
       </form>
       <div id="profileMessage"></div>
     </div>
 
-    <!-- Admin Section -->
+    <!-- Admin: User Management -->
     <div id="adminSection" class="hidden">
       <h2>User Management</h2>
       <div class="admin-actions">
@@ -116,49 +210,27 @@
         <tbody></tbody>
       </table>
     </div>
+
   </main>
-  <!-- Modal -->
-  <div id="userModal" class="modal hidden">
-    <div class="modal-content">
-      <span id="modalClose" class="close">&times;</span>
-      <h3>Edit User</h3>
-      <form id="modalForm" data-user-id="">
-        <!-- duplicate your admin fields here -->
-        <input type="text" id="m_username" placeholder="Username" required />
-        <input type="email" id="m_email" placeholder="Email" required />
-        <select id="m_role">
-          <option value="visitorUser">Visitor</option>
-          <option value="moderator">Moderator</option>
-          <option value="supportUser">Support</option>
-          <option value="admin">Admin</option>
-        </select>
-        <input type="number" id="m_age" placeholder="Age" />
-        <input type="date"   id="m_birthday" />
-        <input type="text"   id="m_nationalId" placeholder="National ID" />
-        <input type="text"   id="m_passportNumber" placeholder="Passport Number" />
-        <input type="date"   id="m_passportExpiry" />
-        <input type="password" id="m_password" placeholder="New Password" />
-        <div class="modal-actions">
-          <button type="submit">Save</button>
-          <button type="button" id="deleteUserBtn" class="danger">Delete</button>
-        </div>
-      </form>
-    </div>
-  </div>
+
+  <footer>
+    <p>Contact us at: datalake@example.com | Address: 1234 Data St, Analytics City</p>
+  </footer>
+
   <!-- Sign Up Modal -->
   <div id="signUpModal" class="modal hidden">
     <div class="modal-content">
       <span id="signUpClose" class="close">&times;</span>
       <h3>Create Account</h3>
       <form id="signUpForm">
-        <input type="text"   id="s_username"      placeholder="Username" required />
-        <input type="email"  id="s_email"         placeholder="Email"    required />
-        <input type="password" id="s_password"    placeholder="Password" required />
-        <input type="number" id="s_age"           placeholder="Age" />
-        <input type="date"   id="s_birthday"      placeholder="Birthday" />
-        <input type="text"   id="s_nationalId"    placeholder="National ID" />
-        <input type="text"   id="s_passportNumber"placeholder="Passport Number" />
-        <input type="date"   id="s_passportExpiry"placeholder="Passport Expiry" />
+        <input type="text"     id="s_username"       placeholder="Username" required />
+        <input type="email"    id="s_email"          placeholder="Email"    required />
+        <input type="password" id="s_password"       placeholder="Password" required />
+        <input type="number"   id="s_age"            placeholder="Age" />
+        <input type="date"     id="s_birthday"       placeholder="Birthday" />
+        <input type="text"     id="s_nationalId"     placeholder="National ID" />
+        <input type="text"     id="s_passportNumber" placeholder="Passport Number" />
+        <input type="date"     id="s_passportExpiry" placeholder="Passport Expiry" />
         <div class="modal-actions">
           <button type="submit">Sign Up</button>
           <button type="button" id="signUpCancel">Cancel</button>
@@ -167,26 +239,54 @@
     </div>
   </div>
 
+  <!-- Edit User Modal -->
+  <div id="userModal" class="modal hidden">
+    <div class="modal-content">
+      <span id="modalClose" class="close">&times;</span>
+      <h3>Edit User</h3>
+      <form id="modalForm" data-user-id="">
+        <input type="text"     id="m_username"       placeholder="Username" required />
+        <input type="email"    id="m_email"          placeholder="Email"    required />
+        <select id="m_role">
+          <option value="visitorUser">Visitor</option>
+          <option value="moderator">Moderator</option>
+          <option value="supportUser">Support</option>
+          <option value="admin">Admin</option>
+        </select>
+        <input type="number"   id="m_age"            placeholder="Age" />
+        <input type="date"     id="m_birthday"       placeholder="Birthday" />
+        <input type="text"     id="m_nationalId"     placeholder="National ID" />
+        <input type="text"     id="m_passportNumber" placeholder="Passport Number" />
+        <input type="date"     id="m_passportExpiry" placeholder="Passport Expiry" />
+        <input type="password" id="m_password"       placeholder="New Password" />
+        <div class="modal-actions">
+          <button type="submit">Save</button>
+          <button type="button" id="deleteUserBtn" class="danger">Delete</button>
+        </div>
+      </form>
+    </div>
+  </div>
 
+  <!-- Create User Modal -->
   <div id="createUserModal" class="modal hidden">
     <div class="modal-content">
       <span id="createModalClose" class="close">&times;</span>
       <h3>Create New User</h3>
       <form id="createUserForm">
-        <input type="text" id="c_username" placeholder="Username" required />
-        <input type="email" id="c_email" placeholder="Email" required />
+        <input type="text"     id="c_username"       placeholder="Username" required />
+        <input type="email"    id="c_email"          placeholder="Email"    required />
         <select id="c_role">
           <option value="visitorUser">Visitor</option>
           <option value="moderator">Moderator</option>
           <option value="supportUser">Support</option>
           <option value="admin">Admin</option>
         </select>
-        <input type="number" id="c_age" placeholder="Age" />
-        <input type="date" id="c_birthday" />
-        <input type="text" id="c_nationalId" placeholder="National ID" />
-        <input type="text" id="c_passportNumber" placeholder="Passport Number" />
-        <input type="date" id="c_passportExpiry" />
-        <input type="password" id="c_password" placeholder="Password" required />
+        <input type="number"   id="c_age"            placeholder="Age" />
+        <input type="date"     id="c_birthday"       placeholder="Birthday" />
+        <input type="text"     id="c_nationalId"     placeholder="National ID" />
+        <input type="text"     id="c_passportNumber" placeholder="Passport Number" />
+        <input type="date"     id="c_passportExpiry" placeholder="Passport Expiry" />
+        <input type="password" id="c_password"       placeholder="Password" required />
         <div class="modal-actions">
           <button type="submit">Create</button>
           <button type="button" id="createCancelBtn">Cancel</button>
@@ -194,11 +294,6 @@
       </form>
     </div>
   </div>
-
-
-  <footer>
-    <p>Contact us at: datalake@example.com | Address: 1234 Data St, Analytics City</p>
-  </footer>
 
   <script src="script.js"></script>
 </body>
