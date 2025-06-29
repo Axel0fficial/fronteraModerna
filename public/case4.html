@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="css/global.css" />
+  <link rel="stylesheet" href="css/case4.css" />
+  <title>Case 4 – File Upload</title>
+</head>
+<body>
+  <header id="header" class="hidden"></header>
+  <nav    id="navBar" class="hidden"></nav>
+
+  <main id="mainContent">
+    <div class="case4-container">
+      <h2>Case 4: Document Upload</h2>
+      <p>Please upload the required document below (PDF only, max 5 MB):</p>
+
+      <form id="case4Form">
+        <input
+          type="file"
+          id="case4File"
+          accept="application/pdf"
+          required
+        />
+        <button type="submit" class="btn btn-primary">Submit Case 4</button>
+      </form>
+    </div>
+  </main>
+
+  <footer id="footer" class="hidden"></footer>
+
+  <script type="module" src="assets/js/auth.js"></script>
+  <script type="module" src="assets/js/common.js"></script>
+  <script type="module" src="assets/js/case4.js"></script>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="css/global.css" />
+  <link rel="stylesheet" href="css/case3.css" />
+  <title>Case 3 – Vehicle Information</title>
+</head>
+<body>
+  <header id="header" class="hidden"></header>
+  <nav    id="navBar" class="hidden"></nav>
+
+  <main id="mainContent">
+    <div class="case3-container">
+      <h2>Case 3: Vehicle Information</h2>
+      <p>Please enter the following vehicle details:</p>
+
+      <form id="case3Form">
+        <label for="nationalId">National ID:</label>
+        <input type="text" id="nationalId" name="nationalId" placeholder="e.g. 12345678-9" required />
+
+        <label for="vehiclePlate">Vehicle Plate:</label>
+        <input type="text" id="vehiclePlate" name="vehiclePlate" placeholder="e.g. ABC-123" required />
+
+        <label for="chassisId">Chassis ID:</label>
+        <input type="text" id="chassisId" name="chassisId" placeholder="Chassis Number" required />
+
+        <button type="submit" class="btn btn-primary">Submit Case 3</button>
+      </form>
+    </div>
+  </main>
+
+  <footer id="footer" class="hidden"></footer>
+
+  <script type="module" src="assets/js/auth.js"></script>
+  <script type="module" src="assets/js/common.js"></script>
+  <script type="module" src="assets/js/case3.js"></script>
+</body>
+</html>

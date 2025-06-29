@@ -11,7 +11,13 @@ const User = sequelize.define('User', {
   birthday: { type: DataTypes.DATEONLY },
   nationalId: { type: DataTypes.STRING, unique: true },
   passportNumber: { type: DataTypes.STRING, unique: true },
-  passportExpiry: { type: DataTypes.DATEONLY }
+  passportExpiry: { type: DataTypes.DATEONLY },
+  nationalIdNumber: { type: DataTypes.STRING, unique: true },
+  drivingLicenseNumber: { type: DataTypes.STRING, unique: true },
+  drivingLicenseExpiry: { type: DataTypes.DATEONLY },
+  parentFirstName:  { type: DataTypes.STRING, allowNull: true },
+  parentLastName:   { type: DataTypes.STRING, allowNull: true },
+  parentNationalId: { type: DataTypes.STRING, allowNull: true },
 });
 
 module.exports = User;
