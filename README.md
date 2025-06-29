@@ -39,30 +39,4 @@ Para empezar el servicio escribe "node server.js" en la terminal
 Notar que tu base de datos estara vacia voy a crear algo para eso 
 
 Despues de iniciar ***server.js*** en una nueva terminal  en la misma carpeta ingresa **node seedUsers.js**
-
-Usa Postman para crear un usuario:
- - Request tipo -> POST
- - URL -> http://localhost:3000/api/auth/register
- - Headers ->Key:Content-Type   Value:application/json
- - Body -> raw -> 
-      {
-        "username": "user",
-        "password": "password",
-        "email": "example@example.com",
-        "role":"role"
-      }
-Roles disponibles para crear:
- - visitorUser
- - moderator
- - supportUser
- - admin
-
-Use Postman to hit:
-
-    POST /api/auth/register
-    POST /api/auth/login
-    POST /api/forms/upload (with pdf file)
-    GET /api/forms
-    PATCH /api/forms/:id/status
-    POST /api/support
-    GET /api/support
+Ingresa a localhost:3000 en tu navegador
