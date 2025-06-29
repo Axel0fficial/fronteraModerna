@@ -1,0 +1,26 @@
+.case4-container {
+  max-width: 600px;
+  margin: 2em auto;
+  background: #ffffff;
+  padding: 1.5em;
+  border-radius: 6px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  text-align: center;
+}
+
+.case4-container h2 {
+  margin-bottom: 0.5em;
+}
+
+.case4-container p {
+  margin-bottom: 1em;
+  color: #555;
+}
+
+#case4Form input[type="file"] {
+  margin-bottom: 1em;
+}
+
+#case4Form button {
+  padding: 0.75em 1.5em;
+}

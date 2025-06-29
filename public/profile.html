@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <link rel="stylesheet" href="css/global.css"/>
+  <link rel="stylesheet" href="css/profile.css"/>
+  <title>Frontera Moderna</title>
+</head>
+<body>
+  <header id="header" class="hidden"></header>
+  <nav    id="navBar" class="hidden"></nav>
+
+  <main id="mainContent">
+    <div class="profile-container">
+      <!-- Sidebar -->
+      <aside class="sidebar">
+        <button id="tabEdit" class="active">Edit Profile</button>
+        <button id="tabHistory">My Cases</button>
+      </aside>
+
+      <!-- Content -->
+      <section class="content">
+        <!-- Edit Profile Tab -->
+        <div id="editSection">
+          <h2>Edit Profile</h2>
+          <form id="profileForm">
+            <input type="text"    id="p_username"       placeholder="Username" required />
+            <input type="email"   id="p_email"          placeholder="Email"    required />
+            <input type="number"  id="p_age"            placeholder="Age" />
+            <input type="date"    id="p_birthday"       placeholder="Birthday" />
+            <input type="text"    id="p_nationalId"     placeholder="National ID" />
+            <input type="text"    id="p_passportNumber" placeholder="Passport Number" />
+            <input type="date"    id="p_passportExpiry" placeholder="Passport Expiry" />
+            <button type="submit" class="btn btn-primary">Save Changes</button>
+          </form>
+          <div id="profileMsg"></div>
+        </div>
+
+        <!-- Cases History Tab -->
+        <div id="historySection" class="hidden">
+          <h2>My Submission History</h2>
+          <ul id="caseHistoryList">
+            <!-- populated by profile.js -->
+          </ul>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer id="footer" class="hidden"></footer>
+
+  <script type="module" src="assets/js/auth.js"></script>
+  <script type="module" src="assets/js/common.js"></script>
+  <script type="module" src="assets/js/profile.js"></script>
+</body>
+</html>

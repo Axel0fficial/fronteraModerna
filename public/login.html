@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link rel="stylesheet" href="css/global.css" />
+  <link rel="stylesheet" href="css/login.css" />
+  <title>Frontera Moderna</title>
+</head>
+<body>
+  <form id="loginForm">
+    <input id="username" placeholder="Username" required>
+    <input id="password" type="password" placeholder="Password" required>
+    <button type="submit">Login</button>
+
+    <div class="login-options">
+      <button id="openSignUp"   type="button">Sign Up</button>
+      <button id="forgotPassword" type="button">Forgot Password?</button>
+    </div>
+  </form>
+
+  <!-- Sign Up Modal -->
+  <div id="signUpModal" class="modal hidden">
+    <div class="modal-content">
+      <span id="signUpClose" class="close">&times;</span>
+      <h3>Create Account</h3>
+      <form id="signUpForm">
+        <input type="text"     id="s_username"       placeholder="Username" required />
+        <input type="email"    id="s_email"          placeholder="Email"    required />
+        <input type="password" id="s_password"       placeholder="Password" required />
+        <input type="number"   id="s_age"            placeholder="Age"  required />
+        <input type="date"     id="s_birthday"       placeholder="Birthday" />
+        <input type="text"     id="s_nationalId"     placeholder="National ID" />
+        <input type="text"     id="s_passportNumber" placeholder="Passport Number" />
+        <input type="date"     id="s_passportExpiry" placeholder="Passport Expiry" />
+        <div id="guardianFields" class="hidden">
+          <input type="text" id="s_parentFirstName" placeholder="Parent First Name" />
+          <input type="text" id="s_parentLastName"  placeholder="Parent Last Name"  />
+          <input type="text" id="s_parentNationalId" placeholder="Parent National ID" />
+        </div>
+
+        <div class="modal-actions">
+          <button type="submit">Sign Up</button>
+          <button type="button" id="signUpCancel">Cancel</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  <script type="module" src="assets/js/login.js"></script>
+</body>
+</html>

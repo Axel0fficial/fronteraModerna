@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link rel="stylesheet" href="css/global.css"/>
+  <link rel="stylesheet" href="css/case1.css"/>
+  <title>Frontera Moderna</title>
+</head>
+<body>
+  <header id="header" class="hidden"></header>
+  <nav    id="navBar" class="hidden"></nav>
+
+  <main id="mainContent">
+    <div class="case1-container">
+      <h2>Case 1: SAG/Aduanas Affidavit</h2>
+      <p>Please view the blank affidavit below, fill it out, then upload your completed copy.</p>
+
+      <!-- Inline PDF viewer -->
+      <object
+        data="/templates/case1_template.pdf#toolbar=0"
+        type="application/pdf"
+        width="100%" height="500"
+      >
+        <p>Your browser doesn’t support inline PDFs.
+           <a href="/templates/case1_template.pdf" download>Download it here</a>
+        </p>
+      </object>
+
+      <!-- Under-18 warning -->
+      <p id="underageWarning" class="warning hidden">
+        🚫 You are under 18. You must also upload a signed guardian consent form below.
+      </p>
+
+      <!-- Upload Form -->
+      <form id="case1Form">
+        <label for="case1FilledPdf">Upload completed affidavit (PDF):</label>
+        <input type="file" id="case1FilledPdf" accept="application/pdf" required />
+
+        <div id="case1ConsentDiv" class="hidden">
+          <label for="case1Consent">Upload guardian consent (PDF):</label>
+          <input type="file" id="case1Consent" accept="application/pdf"/>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Submit Case 1</button>
+      </form>
+    </div>
+  </main>
+
+  <footer id="footer" class="hidden"></footer>
+
+  <script type="module" src="assets/js/auth.js"></script>
+  <script type="module" src="assets/js/common.js"></script>
+  <script type="module" src="assets/js/case1.js"></script>
+</body>
+</html>

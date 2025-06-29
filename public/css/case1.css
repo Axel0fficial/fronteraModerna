@@ -1,0 +1,36 @@
+.case1-container {
+  max-width: 800px;
+  margin: 2em auto;
+  background: #ffffff;
+  padding: 1.5em;
+  border-radius: 6px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.case1-container h2 {
+  margin-bottom: 0.5em;
+}
+
+.case1-container p {
+  margin-bottom: 1em;
+  color: #555;
+}
+
+.warning {
+  color: #e74c3c;
+  font-weight: bold;
+  margin: 1em 0;
+}
+
+#case1Form label {
+  display: block;
+  margin-top: 1em;
+}
+
+#case1Form input {
+  margin-top: 0.5em;
+}
+
+#case1ConsentDiv {
+  margin-bottom: 1em;
+}

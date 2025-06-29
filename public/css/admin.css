@@ -1,0 +1,62 @@
+.admin-container {
+  max-width: 1000px;
+  margin: 2em auto;
+  background: #fff;
+  padding: 1.5em;
+  border-radius: 6px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+.admin-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1em;
+  align-items: center;
+  margin-bottom: 1em;
+}
+.admin-controls input,
+.admin-controls select {
+  padding: 0.5em;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+}
+#usersTable {
+  width: 100%;
+  border-collapse: collapse;
+}
+#usersTable th,
+#usersTable td {
+  border: 1px solid #ddd;
+  padding: 0.75em;
+  text-align: left;
+}
+#usersTable th {
+  background: #f9f9f9;
+}
+#usersTable button {
+  padding: 0.3em 0.6em;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  background: #007bff;
+  color: #fff;
+}
+#usersTable button:hover {
+  background: #0056b3;
+}
+/* Modal */
+.modal-content label {
+  display: block;
+  margin: 0.5em 0;
+}
+.modal-content input,
+.modal-content select {
+  width: 100%;
+  padding: 0.5em;
+  margin-top: 0.25em;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+.modal-content .btn-danger {
+  background: #e74c3c;
+  margin-left: 1em;
+}

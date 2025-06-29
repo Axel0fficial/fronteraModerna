@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="css/global.css" />
+  <link rel="stylesheet" href="css/case5.css" />
+  <title>Frontera Moderna</title>
+</head>
+<body>
+  <header id="header" class="hidden"></header>
+  <nav    id="navBar" class="hidden"></nav>
+
+  <main id="mainContent">
+    <div class="case5-container">
+      <h2>Case 5: Required Documents</h2>
+      <p>Please gather and submit <strong>one</strong> PDF containing the following seven items:</p>
+      <ol class="requirements">
+        <li>Copy of your National ID</li>
+        <li>Copy of your Passport</li>
+        <li>Proof of Residence (utility bill or similar)</li>
+        <li>Proof of Income (pay stub or tax form)</li>
+        <li>Medical Certificate</li>
+        <li>Proof of Enrollment (if student)</li>
+        <li>Signature Authorization Page</li>
+      </ol>
+
+      <p id="underageNote" class="warning hidden">
+        🚫 Users under 18 must also upload a signed guardian consent form on this page.<br>
+        <a href="/templates/underage_consent.pdf" download>Download Consent Form</a>
+      </p>
+
+      <form id="case5Form">
+        <label for="case5Pdf">Upload combined PDF:</label>
+        <input
+          type="file"
+          id="case5Pdf"
+          accept="application/pdf"
+          required
+        />
+        <div id="case5ConsentDiv" class="hidden">
+          <label for="case5Consent">Upload Guardian Consent PDF:</label>
+          <input
+            type="file"
+            id="case5Consent"
+            accept="application/pdf"
+          />
+        </div>
+        <button type="submit" class="btn btn-primary">Submit Case 5</button>
+      </form>
+    </div>
+  </main>
+
+  <footer id="footer" class="hidden"></footer>
+
+  <script type="module" src="assets/js/auth.js"></script>
+  <script type="module" src="assets/js/common.js"></script>
+  <script type="module" src="assets/js/case5.js"></script>
+</body>
+</html>

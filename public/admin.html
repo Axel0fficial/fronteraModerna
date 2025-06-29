@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="css/global.css" />
+  <link rel="stylesheet" href="css/admin.css" />
+  <title>Admin - User Management</title>
+</head>
+<body>
+  <header id="header" class="hidden"></header>
+  <nav    id="navBar" class="hidden"></nav>
+
+  <main id="mainContent">
+    <div class="admin-container">
+      <h2>User Management</h2>
+      <div class="admin-controls">
+        <button id="openCreateBtn" class="btn btn-primary">+ Create User</button>
+        <label for="roleFilter">Role:</label>
+        <select id="roleFilter">
+          <option value="">All</option>
+          <option value="visitorUser">Visitor</option>
+          <option value="moderator">Moderator</option>
+          <option value="supportUser">Support</option>
+          <option value="admin">Admin</option>
+        </select>
+        <input type="text" id="searchUser" placeholder="Search username..." />
+      </div>
+
+      <table id="usersTable">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Username</th>
+            <th>Email</th>
+            <th>Role</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+
+    <!-- Create/Edit Modal -->
+    <div id="userModal" class="modal hidden">
+      <div class="modal-content">
+        <span id="closeUserModal" class="close">&times;</span>
+        <h3 id="modalTitle">Create User</h3>
+        <form id="userForm">
+          <input type="hidden" id="u_id" />
+          <label>Username:<input type="text" id="u_username" required /></label>
+          <label>Email:<input type="email" id="u_email" required /></label>
+          <label>Password:<input type="password" id="u_password" /></label>
+          <label>Age:<input type="number" id="u_age" min="0" required /></label>
+          <label>Role:
+            <select id="u_role">
+              <option value="visitorUser">Visitor</option>
+              <option value="moderator">Moderator</option>
+              <option value="supportUser">Support</option>
+              <option value="admin">Admin</option>
+            </select>
+          </label>
+          <button type="submit" class="btn btn-primary" id="saveUserBtn">Save</button>
+          <button type="button" class="btn btn-danger" id="deleteUserBtn">Delete</button>
+        </form>
+      </div>
+    </div>
+  </main>
+
+  <footer id="footer" class="hidden"></footer>
+
+  <script type="module" src="assets/js/auth.js"></script>
+  <script type="module" src="assets/js/common.js"></script>
+  <script type="module" src="assets/js/admin.js"></script>
+</body>
+</html>

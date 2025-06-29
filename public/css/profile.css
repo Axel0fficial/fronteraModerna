@@ -1,0 +1,56 @@
+/* Layout for profile page */
+.profile-container {
+  display: flex;
+  gap: 1rem;
+}
+
+/* Sidebar styling */
+.sidebar {
+  flex: 0 0 150px;
+  display: flex;
+  flex-direction: column;
+  background: #ffffff;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+}
+.sidebar button {
+  background: none;
+  border: none;
+  padding: 0.75em 1em;
+  text-align: left;
+  cursor: pointer;
+  font-size: 1rem;
+}
+.sidebar button.active,
+.sidebar button:hover {
+  background-color: #007bff;
+  color: #fff;
+}
+
+/* Content area */
+.content {
+  flex: 1;
+  background: #ffffff;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  padding: 1rem;
+}
+
+/* Hide sections */
+#editSection.hidden,
+#historySection.hidden {
+  display: none;
+}
+
+/* Case history list */
+#caseHistoryList {
+  list-style: none;
+  padding-left: 0;
+}
+#caseHistoryList li {
+  padding: 0.5em 0;
+  border-bottom: 1px solid #eee;
+}
+#caseHistoryList li:last-child {
+  border-bottom: none;
+}
