@@ -7,6 +7,7 @@ const authRoutes   = require('./routes/auth');
 const formRoutes   = require('./routes/forms');
 const supportRoutes= require('./routes/support');
 const userRoutes   = require('./routes/users');
+const casesRoutes   = require('./routes/cases');
 const bundlesRoutes = require('./routes/bundles');
 
 dotenv.config();
@@ -19,7 +20,7 @@ app.use('/api/forms',   formRoutes);
 app.use('/api/support', supportRoutes);
 app.use('/api/users',   userRoutes);
 app.use('/api/bundles', bundlesRoutes);
-
+app.use('/api/cases',   casesRoutes);
 // Serve static frontend
 app.use(
   express.static(path.join(__dirname, 'public'), {
